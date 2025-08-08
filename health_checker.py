@@ -5,11 +5,21 @@ from utils.parser import parse_output
 from concurrent.futures import ThreadPoolExecutor
 
 def check_device(ip, username, password):
+    # Simulated mode
+    if ip.lower() == "test_ap":
+        return {
+            "IP": ip,
+            "Uptime": "5 days, 4 hours",
+            "CPU_Usage": "12%",
+            "Memory_Usage": "256MB",
+            "Process_Status": "Running"
+        }
+
+    # Real SSH mode
     ssh_client = ssh_connect(ip, username, password)
     if not ssh_client:
         return {"IP": ip, "Status": "Connection Failed"}
-    
-    # Commands to run
+
     uptime_cmd = "uptime -p"
     cpu_cmd = "top -bn1 | grep 'Cpu(s)'"
     mem_cmd = "free -m"

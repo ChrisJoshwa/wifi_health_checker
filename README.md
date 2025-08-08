@@ -18,3 +18,11 @@ git clone https://github.com/<your-username>/wifi_health_checker.git
 cd wifi_health_checker
 pip install -r requirements.txt
 
+## Testing Without Real Devices
+
+To test this tool without connecting to real Access Points, use the following entry in your device list CSV:
+
+```csv
+ip,username,password
+test_ap,dummy,dummy
+
